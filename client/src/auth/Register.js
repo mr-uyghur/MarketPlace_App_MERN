@@ -4,58 +4,21 @@
 //then backend will save or create a new user in the database 
 //complete user register 
 import { useState } from 'react'
-
+import RegisterForm from '../componenets/RegisterForm'
 const Register = () => {
     //create a state to store user information
     const [name,setName] = useState('') //React hook(state)
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
 
-    const handleSubmit = () => {
-        alert('send user info to backend')
+    const handleSubmit = (e) => {
+        e.preventDefault() //this prevent page from reloading after submit
+        console.table({name, email, password})
     }
 
-    const registerForm = () => {
-        return (
-            <>
-                {/* on submit call the function that will send information to the backend */}
-                <form onSubmit={handleSubmit} className = "mt-3">
-                    <div className="form-group mb-3">
-                        <label className = "form-lable">Your Name </label>
-                        <input type="text"
-                            className="form-control"
-                            placeholder="Enter name"
-                            value={name}
-                            onChange={e => setName(e.target.value)} /> {/* anything user types into "onChange" will be available in state */}
-                            
-                    </div>
 
-                    <div className="form-group mb-3">
-                        <label className = "form-lable">Your Email </label>
-                        <input type="email"
-                            className="form-control"
-                            placeholder="Enter email"
-                            value={email}
-                            onChange={e => setEmail(e.target.value)} /> {/* anything user types into "onChange" will be available in state */}
-                            
-                    </div>
-
-                    <div className="form-group mb-3">
-                        <label className = "form-lable">Password </label>
-                        <input type="password"
-                            className="form-control"
-                            placeholder="Enter your password"
-                            value={password}
-                            onChange={e => setPassword(e.target.value)} /> {/* anything user types into "onChange" will be available in state */}
-                            
-                    </div>
-
-                    <button className = "btn btn-primary">Submit </button>
-                </form>
-            </>
-        )
-    }
-
+    //Use props to pass my states and handleSubmit function to RefisterForm component
+    //so I can use these code inside my RegisterForm
     return (
         <>
 
@@ -65,7 +28,11 @@ const Register = () => {
             <div className="container">
                 <div className="Row">
                     <div className="col-md-6 offset-mid-3">
-                        {registerForm()}
+                        <RegisterForm handleSubmit = {handleSubmit}
+                        name = {name} setName = {setName}
+                        email = {email} setEmail = {setEmail}
+                        password = {password} setPassword = {setPassword}
+                        />
                     </div>
                 </div>
             </div>
