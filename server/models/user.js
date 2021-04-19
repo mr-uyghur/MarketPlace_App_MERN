@@ -1,6 +1,8 @@
 //user schema
 //models is tables in the database.
-import models from 'mongoose' 
+import mongoose from 'mongoose' 
+import bcrypt from 'bcrypt'
+
 const {Schema} = mongoose
 
 const userSchema = new Schema({
@@ -14,5 +16,32 @@ const userSchema = new Schema({
 },
 {timestamps:true} 
 )
+
+/* -----------------------------------------------------
+while creating user, hash user's password for encryption.
+hashing password under 2 conditions:
+* when creating a new user and when existing user updates password
+use 'pre' middleware to handle these requirement
+this middle ware will be used each time a new user is created or password update
+---------------------------------------------------------*/
+
+//pre middleware
+userSchema.pre('save',function(next){
+    let user = this // user var will refer to userSchema itself
+    //has Password with Bcrypt
+    if(user.isModified('password')){
+        return bcrypt.hash(user.password,12,function(err, hash){
+            if(err){
+                console.log('Bcrypt HAS ERROR: ',err)
+                return next(err)
+            }
+            //if no error then hash user's password
+            user.password = hash
+            return next();
+        })
+    } else {
+        return next()
+    }
+})
 
 export default mongoose.model('User',userSchema) // export user schema as "User"
