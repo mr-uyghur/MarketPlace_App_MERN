@@ -2,9 +2,11 @@
 import express from 'express'
 const router = express.Router()
 //controllers
-import {showMessage} from '../controllers/auth'
+import {showMessage, register} from '../controllers/auth'
 
 
 router.get('/:message', showMessage)
+
+router.post('/register', register)//register user endpoint
 
 module.exports = router;

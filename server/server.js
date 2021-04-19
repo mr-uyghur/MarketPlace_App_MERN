@@ -22,9 +22,9 @@ mogoose.connect(process.env.DATABASE,{
 
 //middlewares
 app.use(cors())
-
 //morgan middleware
 app.use(morgan("dev")) // we want to run morgan in development mode
+app.use(express.json())
 //route middleware with express' use method
 // with this code we wanna make sure we read everything in the routes to make things easy
 // we map through each files in routes folder
