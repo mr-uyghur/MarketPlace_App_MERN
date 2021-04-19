@@ -4,7 +4,7 @@
 // thses props are destructured
 
 const RegisterForm = (
-    {handleSubmit, name, setName, email, setEmail, password, setPassword}
+    {handleSubmit, name, setName, email, setEmail, password, setPassword} //props
 ) =>{
     return (
         <>

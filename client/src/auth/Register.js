@@ -5,20 +5,33 @@
 //complete user register 
 import { useState } from 'react'
 import RegisterForm from '../componenets/RegisterForm'
+import axios from 'axios'
+
 const Register = () => {
     //create a state to store user information
     const [name,setName] = useState('') //React hook(state)
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault() //this prevent page from reloading after submit
-        console.table({name, email, password})
+        // use axios post and send data to backend
+        try {
+            const res = await axios.post(`http://localhost:8000/api/register`, {
+            name:name,
+            email:email,
+            password:password,
+        })
+        console.log("Registered User ====>",res)
+        } catch(err){
+            console.log(err)
+        }
     }
 
-
+//-------------------------------------------------------------------------------------------
     //Use props to pass my states and handleSubmit function to RefisterForm component
     //so I can use these code inside my RegisterForm
+//------------------------------------------------------------------------------------------
     return (
         <>
 
@@ -28,10 +41,10 @@ const Register = () => {
             <div className="container">
                 <div className="Row">
                     <div className="col-md-6 offset-mid-3">
-                        <RegisterForm handleSubmit = {handleSubmit}
-                        name = {name} setName = {setName}
-                        email = {email} setEmail = {setEmail}
-                        password = {password} setPassword = {setPassword}
+                        <RegisterForm handleSubmit = {handleSubmit} //props
+                        name = {name} setName = {setName}   //props
+                        email = {email} setEmail = {setEmail} //props
+                        password = {password} setPassword = {setPassword} //props
                         />
                     </div>
                 </div>
