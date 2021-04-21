@@ -5,6 +5,7 @@
 //complete user register 
 import { useState } from 'react'
 import RegisterForm from '../componenets/RegisterForm'
+import {register} from '../action/auth'
 import axios from 'axios'
 import { toast } from 'react-toastify';
 
@@ -20,11 +21,11 @@ const Register = ({history}) => { //history props for redirecting users to login
         // use axios post and send data to backend
         try {
             //api endpoint are imported from .env file for readibility 
-            const res = await axios.post(`${process.env.REACT_API_API}/register`, {
-            name:name,
-            email:email,
-            password:password,
-        })
+            const res = await register({ //register function is the axios post request
+                    name:name,
+                    email:email,
+                    password:password,
+            })
         console.log("Registered User ====>",res)
         toast.success('Registered scuessfully, please login')
         history.push("/login")
