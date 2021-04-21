@@ -1,24 +1,16 @@
 
-//inside RegisterForm parameter I am inhereting props from Register component
+//inside LoginForm parameter I am inhereting props from Register component
 //so I can use those code inside this component
 // thses props are destructured
 
-const RegisterForm = (
-    {handleSubmit, name, setName, email, setEmail, password, setPassword} //props
+
+const LoginForm = (
+    {handleSubmit, email, setEmail, password, setPassword} //props
 ) =>{
     return (
         <>
             {/* on submit call the function that will send information to the backend */}
             <form onSubmit={handleSubmit} className = "mt-3">
-                <div className="form-group mb-3">
-                    <label className = "form-lable">Your Name </label>
-                    <input type="text"
-                        className="form-control"
-                        placeholder="Enter name"
-                        value={name}
-                        onChange={e => setName(e.target.value)} /> {/* anything user types into "onChange" will be available in state */}
-                        
-                </div>
 
                 <div className="form-group mb-3">
                     <label className = "form-lable">Your Email </label>
@@ -40,10 +32,10 @@ const RegisterForm = (
                         
                 </div>
 
-                <button disabled = {!email || !password || !name} className = "btn btn-primary">Submit </button>
+                <button disabled = {!email || !password} className = "btn btn-primary">Submit </button>
             </form>
         </>
     )
 }
 
-export default RegisterForm
+export default LoginForm
