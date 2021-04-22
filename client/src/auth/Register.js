@@ -5,8 +5,7 @@
 //complete user register 
 import { useState } from 'react'
 import RegisterForm from '../componenets/RegisterForm'
-import {register} from '../action/auth'
-import axios from 'axios'
+import {register} from '../action/auth' // register axios post request func
 import { toast } from 'react-toastify';
 
 

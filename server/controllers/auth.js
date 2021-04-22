@@ -26,5 +26,40 @@ export const register = async (req, res) =>{
         console.log('Err for saving user: ', err)
         return res.status(400).send('Error. Try again')
     }
+}
 
+//Login Controller
+/*
+----------------------------------------------------------------
+Find the user by email from the database 
+compare user's hashed password with incoming password
+middle ware for compare password is in user model 
+if password match, user login is successful
+then user respose with JWT(Jason Web Token) will be send back to the front end
+with JWT user token, that user then can have access to website features like posting or booking etc
+----------------------------------------------------------------
+*/
+
+export const login = async (req, res) => {
+    const {email, password} = req.body // destructured the information I'm receiving
+    try{
+        //check if user's email exists
+        let user = await User.findOne({email}).exec() //user var finds email from User Model
+        if(!user) res.status(404).send("Email not found")
+        //compare password
+        user.comparePassword(password, (err, match) => { //comparePassword function is written down in user schema
+            console.log("Compare password in login error ", err)
+            //if password doesn't match
+            if(!match || err){
+                return res.status(400).send('Wrong password')
+            }
+            //generate token and send respose to client adter validating the userExist
+            
+
+        })
+        
+    } catch(err){
+        console.log('Login Err',err)
+        res.status(400).send("Login failed")
+    }
 }

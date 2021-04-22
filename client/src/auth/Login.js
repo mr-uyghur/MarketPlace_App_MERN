@@ -9,6 +9,17 @@ const Login = () =>{
 
     const handleSubmit = async(e) =>{
         e.preventDefault()
+        console.log("SEND LOGIN DATA", {email, password})
+        try{
+            let res = await login({email,password})
+            if(res.data){
+                console.log('SAVE USER RES IN REDUX AND LOCAL STORAGE THEN REDIRECT TO ===>', res.data)
+                
+            }
+        } catch(err){
+            console.log(err)
+            toast.error(err.response.data)
+        }
     }
 
     return (
