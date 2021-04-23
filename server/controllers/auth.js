@@ -1,8 +1,10 @@
-//API controller
+
+import User from '../models/user'
+import jwt from 'jsonwebtoken' //JWT
+//API controllers below
 //information send from the frontend with post request
 // is recieved as request body on our backend
 //request body is recieved as JSON data
-import User from '../models/user'
 // controller method to handle user register
 export const register = async (req, res) =>{
     //user data information send from the front end can be accessed with req body
@@ -54,8 +56,18 @@ export const login = async (req, res) => {
                 return res.status(400).send('Wrong password')
             }
             //generate token and send respose to client adter validating the userExist
-            
-
+            let token = jwt.sign({_id : user._id}, process.env.JWT_SECRET,{ // use use_id to generate a jwt token
+                expiresIn:'7d'
+            }) 
+            // sent token back to the frontend (client)
+            res.json({token, user : {
+                //send the following token user info, (basically everything except for user password)
+                name: user.name, 
+                email: user.email,
+                _id: user._id,
+                createdAt: user.createdAt,
+                updatedAt: user.updatedAt,
+            }})
         })
         
     } catch(err){
