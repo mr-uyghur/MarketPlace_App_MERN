@@ -2,10 +2,26 @@ import {toast} from 'react-toastify'
 import {login} from '../action/auth'
 import LoginForm from '../componenets/LoginForm'
 import { useState } from 'react'
+import {useDispatch} from 'react-redux'
 
-const Login = () =>{
+/*
+--------------------------------------------------------------------------------
+Login Logic Todos:
+Login, token and user is sent from backend as response to front end
+save the token and user to redux state(global state, so we can access this user token in any pages) and also in local storage
+then the logged in user can access the routes made for registered users (posting product booking product etc)
+send this token in the req.headers
+then backend can check the token to see if it is valid
+use expressJwt middleware to extract user id from toekn 
+then user that user id to get current logged in user
+--------------------------------------------------------------------------------
+*/
+
+const Login = ({history}) =>{
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
+
+    const dispatch = useDispatch()
 
     const handleSubmit = async(e) =>{
         e.preventDefault()
@@ -16,6 +32,16 @@ const Login = () =>{
                 console.log('SAVE USER RES IN REDUX AND LOCAL STORAGE THEN REDIRECT TO ===>', res.data)
                 
             }
+            //save user and token to local storage
+            //save res.data in JSON format in local storage
+            window.localStorage.setItem('auth',JSON.stringify(res.data))
+            //save user and token to redux using dispatch
+            dispatch({
+                type : "LOGGED_IN_USER",
+                payload: res.data
+            })
+            //refirect logged in user
+            // history.push("/")
         } catch(err){
             console.log(err)
             toast.error(err.response.data)
