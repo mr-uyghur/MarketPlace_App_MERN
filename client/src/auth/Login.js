@@ -41,7 +41,7 @@ const Login = ({history}) =>{
                 payload: res.data
             })
             //refirect logged in user
-            // history.push("/")
+            history.push("/")
         } catch(err){
             console.log(err)
             toast.error(err.response.data)
