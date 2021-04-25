@@ -2,12 +2,15 @@
 //based on the path show each componenets/page using react-router
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 // import Link from 'react-router-dom'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import TopNav from './componenets/TopNav'
+import PrivateRoute from './componenets/PrivateRoute'
+//componenets
 import Home from './booking/Home'
 import Login from './auth/Login'
 import Register from './auth/Register'
-import TopNav from './componenets/TopNav'
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import Dashboard from './user/Dashboard'
 
 
 function App() {
@@ -21,6 +24,7 @@ function App() {
         <Route exact path = "/" component={Home}/>
         <Route exact path = "/login" component={Login}/>
         <Route exact path = "/register" component={Register}/>
+        <PrivateRoute exact path = "/dashboard" component={Dashboard}/>
       </Switch>    
 
     </BrowserRouter>
