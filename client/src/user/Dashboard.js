@@ -10,13 +10,14 @@ in this compoenent show a Nav Bar that contains 2 componenets
 */
 
 import DashboardNav from '../componenets/DashboardNav'
+import ConnectNav from '../componenets/ConnectNav'
 
 
 const Dashboard = () => {
     return(
         <>
         <div className="cotainer-fluid bg-secondary p-5">
-            <h1> Dashboard</h1>
+            <ConnectNav/>
             </div>
 
             <div className="cotainer-fluid p-4">
@@ -31,3 +32,4 @@ const Dashboard = () => {
 }
 
 export default Dashboard
+

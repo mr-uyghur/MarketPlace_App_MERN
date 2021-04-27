@@ -1,11 +1,12 @@
 import DashboardNav from '../componenets/DashboardNav'
+import ConnectNav from '../componenets/ConnectNav'
 
 
 const DashboardSeller = () => {
     return(
         <>
         <div className="cotainer-fluid bg-secondary p-5">
-            <h1> DashboardSeller</h1>
+            <ConnectNav/>
             </div>
 
             <div className="cotainer-fluid p-4">
