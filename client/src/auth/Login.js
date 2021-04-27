@@ -43,8 +43,8 @@ const Login = ({history}) =>{
             //refirect logged in user
             history.push("/dashboard")
         } catch(err){
-            console.log(err)
-            toast.error(err.response.data)
+            // console.log(err)
+            // toast.error(err.response.data)
         }
     }
 
