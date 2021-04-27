@@ -1,12 +1,13 @@
 
+const NewHotel = () =>{
 
-const Home = () =>{
 
     return (
         <div className="container-fluid h1 p-5 text-center">
-            Home page
+            NewHotel page
+            
             </div>
     )
 }
 
-export default Home;
+export default NewHotel;

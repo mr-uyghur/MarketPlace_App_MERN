@@ -23,9 +23,17 @@ const TopNav = () => {
     return (
         <div className="nav bg-light d-flex justify-content-between">
             <Link className="nav-link" to="/"> Home</Link>
+
+            {auth !== null && (
+                <Link className="nav-link" to="/dashboard"> 
+                Dashboard
+                    </Link>
+                
+            )}
             
             {auth !== null && (
-                <button className="nav-link btn btn-warning" onClick = {logout}> Logout</button>
+                // <button className="nav-link btn btn-warning" onClick = {logout}> Logout</button>
+                <Link className="nav-link" onClick = {logout}> Logout</Link>
             )}
 
             {auth === null && (

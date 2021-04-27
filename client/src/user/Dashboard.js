@@ -11,6 +11,7 @@ in this compoenent show a Nav Bar that contains 2 componenets
 
 import DashboardNav from '../componenets/DashboardNav'
 import ConnectNav from '../componenets/ConnectNav'
+import {Link} from 'react-router-dom'
 
 
 const Dashboard = () => {
@@ -24,8 +25,16 @@ const Dashboard = () => {
                 <DashboardNav/>
                 </div>
 
-            <div className="cotainer"  >
-                Show all products and a button for browsing them
+            <div className="cotainer-fluid"  >
+                <div className = "row">
+                    <div className= "col-md-10">
+                        <h2> Your bookings</h2>
+                        </div>
+                        <div className= "col-md-2">
+                        <Link to = '/' className = "btn btn-primary">Browse Hotel </Link>
+                        </div>
+
+                    </div>
                 </div>
         </>
     )

@@ -1,6 +1,7 @@
 import DashboardNav from '../componenets/DashboardNav'
 import ConnectNav from '../componenets/ConnectNav'
-
+import {Link} from 'react-router-dom'
+//sellers can create new hotels on this component
 
 const DashboardSeller = () => {
     return(
@@ -13,8 +14,16 @@ const DashboardSeller = () => {
                 <DashboardNav/>
                 </div>
 
-            <div className="cotainer"  >
-                Show all products user has posted and a button to add new
+                <div className="cotainer-fluid"  >
+                <div className = "row">
+                    <div className= "col-md-10">
+                        <h2> Your Hotels</h2>
+                        </div>
+                        <div className= "col-md-2">
+
+                        <Link to = '/hotel/new' className = "btn btn-primary">+ Add New </Link>
+                        </div>
+                    </div>
                 </div>
         </>
     )
