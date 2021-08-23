@@ -2,6 +2,7 @@ import DashboardNav from '../componenets/DashboardNav'
 import ConnectNav from '../componenets/ConnectNav'
 import { Link } from 'react-router-dom'
 import {useSelector} from 'react-redux'
+import {HomeOutlined} from '@ant-design/icons'
 //sellers can create new hotels on this component
 
 const DashboardSeller = () => {
@@ -26,8 +27,22 @@ const DashboardSeller = () => {
     const notConnected = () => (
         <div className="cotainer-fluid"  >
             <div className="row">
-                <div className="col-md-10">
-                    <h2> Connect with Stripe</h2>
+                <div className="col-md-6 offset-mid-3 text-center">
+                    <div className = "p-5 pointer">
+                        <HomeOutlined className = "h1" />
+                        <h4> Set up payment method with Stripe </h4>
+                        <p className = "lead">
+                            Fillout your information for processing payments.
+                            </p>
+                            <button className ="btn btn-primary mb-3" >
+                                Setup payment
+                                </button>
+                              <p className = "text-muted">
+                                  You'll be redirected to Stripe
+                                  </p>
+
+
+                        </div>
                 </div>
               
             </div>
@@ -43,7 +58,7 @@ const DashboardSeller = () => {
             <div className="cotainer-fluid p-4">
                 <DashboardNav />
             </div>
-            
+
             {/* show connected if user is already connected to stripe, otherwise not connected */}
             {auth && 
             auth.user && 
