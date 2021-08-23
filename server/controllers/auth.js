@@ -18,7 +18,7 @@ export const register = async (req, res) =>{
     //validate if email is unique, if user already exists with this email
     let userExist = await User.findOne({email: email}).exec()  
     if(userExist) return res.status(400).send('This email already exists')
-    //ones these validations are passed then go ahead and create the user 
+    //assuming these validations are passed then go ahead and create the user 
     const user = new User(req.body)
     try {
         await user.save()
